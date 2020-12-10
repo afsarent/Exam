@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<div id="my_camera"></div>
+<script type="text/javascript" src="../ProjectDR/webcam.min.js"></script>
+<script>
+function onAdd(){
+	/*console.log("Clicked");
+	Webcam.set({
+		width: 320,
+		height: 240,
+		image_format: 'jpeg',
+		jpeg_quality: 90
+	});
+	Webcam.attach( '#my_camera' );*/
+	const urlParams = new URLSearchParams(window.location.search);
+	const id = urlParams.get('id');
+	window.location.replace("../capturer/cam.htm?id="+id);
+}
+</script>
+<script type="text/javascript">
+
+	function fetch(){
+		const urlParams = new URLSearchParams(window.location.search);
+		const id = urlParams.get('id');
+		var requestOptions = {
+				  method: 'GET',
+				  redirect: 'follow'
+				};
+
+			fetch("https://exams.entrarlive.info:8443/file/directory?id=samples", requestOptions)
+			.then(response => response.text())
+			.then(result => console.log(result))
+			.catch(error => console.log('error', error));
+	}
+	//window.onload = fetch;
+
+</script>
+
+<a href="javascript:onAdd()" class="float">
+<i class="fa fa-plus my-float" aria-hidden="true"></i>
+</a>
+</body>
+</html>
